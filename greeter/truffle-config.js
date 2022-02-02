@@ -17,7 +17,7 @@
  * phrase from a file you've .gitignored so it doesn't accidentally become public.
  *
  */
-//rude year donate hybrid master frog joke type attend salad ahead critic
+
 
 const HDWalletProvider = require('@truffle/hdwallet-provider')
 
@@ -53,8 +53,10 @@ module.exports = {
     goerli: {
       networkCheckTimeout: 10000,
       provider: () => {
-        //const mnemonic = process.env['MNEMONIC']
+        const mnemonic = process.env['MNEMONIC']
+        //rude year donate hybrid master frog joke type attend salad ahead critic
         const privkey =["3c5dbf57ee4e1608cecb98bd55d03e8f48f6872d4af002c45879e07f678c3360"]
+        //return new HDWalletProvider(mnemonic, 'http://127.0.0.1:9545')
         return new HDWalletProvider(privkey, 'http://127.0.0.1:7545')
       },
       network_id: '*',
