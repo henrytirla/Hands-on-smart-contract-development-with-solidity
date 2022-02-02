@@ -17,13 +17,16 @@
  * phrase from a file you've .gitignored so it doesn't accidentally become public.
  *
  */
+//rude year donate hybrid master frog joke type attend salad ahead critic
 
-// const HDWalletProvider = require('@truffle/hdwallet-provider');
+const HDWalletProvider = require('@truffle/hdwallet-provider')
+
 //
 // const fs = require('fs');
 // const mnemonic = fs.readFileSync(".secret").toString().trim();
 
 module.exports = {
+  contracts_build_directory: './client/src/contracts',
   /**
    * Networks define how you connect to your ethereum client and let you set the
    * defaults web3 uses to send transactions. If you don't specify one truffle
@@ -41,11 +44,32 @@ module.exports = {
     // tab if you use this network and you must also set the `host`, `port` and `network_id`
     // options below to some value.
     //
-    // development: {
-    //  host: "127.0.0.1",     // Localhost (default: none)
-    //  port: 8545,            // Standard Ethereum port (default: none)
-    //  network_id: "*",       // Any network (default: none)
-    // },
+    development: {
+      host: "127.0.0.1",     // Localhost (default: none)
+     port: 7545,            // Standard Ethereum port (default: none)
+     network_id: "*",       // Any network (default: none)
+     from: "0x6d292F3768a81bF41Fb40439346C9407E067Cd7E"
+    },
+    goerli: {
+      networkCheckTimeout: 10000,
+      provider: () => {
+        //const mnemonic = process.env['MNEMONIC']
+        const privkey =["3c5dbf57ee4e1608cecb98bd55d03e8f48f6872d4af002c45879e07f678c3360"]
+        return new HDWalletProvider(privkey, 'http://127.0.0.1:9545')
+      },
+      network_id: '*',
+    },
+    rinkeby: {
+      provider: () => {
+        const mnemonic = process.env['MNEMONIC']
+        const project_id = process.env['INFURA_PROJECT_ID']
+        return new HDWalletProvider(
+          mnemonic,
+          `https://rinkeby.infura.io/v3/${project_id}`,
+        )
+      },
+      network_id: '*',
+    },
     // Another network with more advanced options...
     // advanced: {
     // port: 8777,             // Custom port
@@ -81,7 +105,7 @@ module.exports = {
   // Configure your compilers
   compilers: {
     solc: {
-      version: "0.8.11",    // Fetch exact version from solc-bin (default: truffle's version)
+      version: '0.8.11', // Fetch exact version from solc-bin (default: truffle's version)
       // docker: true,        // Use "0.5.1" you've installed locally with docker (default: false)
       // settings: {          // See the solidity docs for advice about optimization and evmVersion
       //  optimizer: {
@@ -90,7 +114,7 @@ module.exports = {
       //  },
       //  evmVersion: "byzantium"
       // }
-    }
+    },
   },
 
   // Truffle DB is currently disabled by default; to enable it, change enabled:
@@ -100,17 +124,17 @@ module.exports = {
   // NOTE: It is not possible to migrate your contracts to truffle DB and you should
   // make a backup of your artifacts to a safe location before enabling this feature.
   //
-  // After you backed up your artifacts you can utilize db by running migrate as follows: 
+  // After you backed up your artifacts you can utilize db by running migrate as follows:
   // $ truffle migrate --reset --compile-all
   //
   // db: {
-    // enabled: false,
-    // host: "127.0.0.1",
-    // adapter: {
-    //   name: "sqlite",
-    //   settings: {
-    //     directory: ".db"
-    //   }
-    // }
+  // enabled: false,
+  // host: "127.0.0.1",
+  // adapter: {
+  //   name: "sqlite",
+  //   settings: {
+  //     directory: ".db"
+  //   }
   // }
-};
+  // }
+}
