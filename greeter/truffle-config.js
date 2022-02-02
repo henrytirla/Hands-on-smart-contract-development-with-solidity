@@ -55,7 +55,7 @@ module.exports = {
       provider: () => {
         //const mnemonic = process.env['MNEMONIC']
         const privkey =["3c5dbf57ee4e1608cecb98bd55d03e8f48f6872d4af002c45879e07f678c3360"]
-        return new HDWalletProvider(privkey, 'http://127.0.0.1:9545')
+        return new HDWalletProvider(privkey, 'http://127.0.0.1:7545')
       },
       network_id: '*',
     },
