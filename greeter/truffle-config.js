@@ -1,3 +1,4 @@
+require('dotenv').config()
 /**
  * Use this file to configure your truffle project. It's seeded with some
  * common settings for different networks and features like migrations,
@@ -20,10 +21,21 @@
 
 
 const HDWalletProvider = require('@truffle/hdwallet-provider')
+//const fs = require("fs");
+//const mnemonic=fs.readFileSync(".secret").toString.trim();
+const mnemonic="rude year donate hybrid master frog joke type attend salad ahead critic"
 
 //
 // const fs = require('fs');
 // const mnemonic = fs.readFileSync(".secret").toString().trim();
+const private_key =[
+
+process.env.MNEMONIC,
+
+
+]
+  
+     
 
 module.exports = {
   contracts_build_directory: './client/src/contracts',
@@ -36,7 +48,7 @@ module.exports = {
    *
    * $ truffle test --network <network-name>
    */
-
+  
   networks: {
     // Useful for testing. The `development` name is special - truffle uses it by default
     // if it's defined here and no other network is specified at the command line.
@@ -54,9 +66,7 @@ module.exports = {
       //networkCheckTimeout: 10000,
       provider: () => {
       //const mnemonic = process.env['MNEMONIC']
-        //rude year donate hybrid master frog joke type attend salad ahead critic
-        //const privkey =["3c5dbf57ee4e1608cecb98bd55d03e8f48f6872d4af002c45879e07f678c3360"]
-        const mnemonic ="rude year donate hybrid master frog joke type attend salad ahead critic"
+        
         return new HDWalletProvider(mnemonic, 'http://localhost:8545')
         //return new HDWalletProvider(privkey, 'http://127.0.0.1:9545')
       },
@@ -64,16 +74,20 @@ module.exports = {
     },
     rinkeby: {
       provider: () => {
-        //b28812c62af1405e90af0ee79ea42a41
-        //const mnemonic = process.env['MNEMONIC']
-        const mnemonic = "rude year donate hybrid master frog joke type attend salad ahead critic"
-        const project_id = process.env['INFURA_PROJECT_ID']
-        return new HDWalletProvider(mnemonic
-          ,
-          `https://rinkeby.infura.io/v3/b28812c62af1405e90af0ee79ea42a41`,
+  
+        return new HDWalletProvider({
+          privateKeys: private_key,
+          providerOrUrl: 'https://rinkeby.infura.io/v3/b28812c62af1405e90af0ee79ea42a41',
+          numberOfAddresses: 2,
+
+        }
         )
       },
-      network_id: '*',
+      network_id: 4,
+      gas: 5500000,
+      confirmations: 2,
+      timeoutBlocks: 200,
+      skipDryRun: true
     },
     // Another network with more advanced options...
     // advanced: {

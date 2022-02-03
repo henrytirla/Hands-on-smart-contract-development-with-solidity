@@ -1,2 +1,4 @@
 */node_modules/
 hoscdev/
+.secret
+.env
