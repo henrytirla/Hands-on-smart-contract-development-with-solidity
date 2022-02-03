@@ -51,23 +51,26 @@ module.exports = {
      from: "0x6d292F3768a81bF41Fb40439346C9407E067Cd7E"
     },
     goerli: {
-      networkCheckTimeout: 10000,
+      //networkCheckTimeout: 10000,
       provider: () => {
-        const mnemonic = process.env['MNEMONIC']
+      //const mnemonic = process.env['MNEMONIC']
         //rude year donate hybrid master frog joke type attend salad ahead critic
-        const privkey =["3c5dbf57ee4e1608cecb98bd55d03e8f48f6872d4af002c45879e07f678c3360"]
-        //return new HDWalletProvider(mnemonic, 'http://127.0.0.1:9545')
-        return new HDWalletProvider(privkey, 'http://127.0.0.1:7545')
+        //const privkey =["3c5dbf57ee4e1608cecb98bd55d03e8f48f6872d4af002c45879e07f678c3360"]
+        const mnemonic ="rude year donate hybrid master frog joke type attend salad ahead critic"
+        return new HDWalletProvider(mnemonic, 'http://localhost:8545')
+        //return new HDWalletProvider(privkey, 'http://127.0.0.1:9545')
       },
       network_id: '*',
     },
     rinkeby: {
       provider: () => {
-        const mnemonic = process.env['MNEMONIC']
+        //b28812c62af1405e90af0ee79ea42a41
+        //const mnemonic = process.env['MNEMONIC']
+        const mnemonic = "rude year donate hybrid master frog joke type attend salad ahead critic"
         const project_id = process.env['INFURA_PROJECT_ID']
-        return new HDWalletProvider(
-          mnemonic,
-          `https://rinkeby.infura.io/v3/${project_id}`,
+        return new HDWalletProvider(mnemonic
+          ,
+          `https://rinkeby.infura.io/v3/b28812c62af1405e90af0ee79ea42a41`,
         )
       },
       network_id: '*',
